@@ -38,4 +38,20 @@ class Attendee extends Model
 
         return $candidate;
     }
+
+    /**
+     * RELATIONSHIPS FOR MODULE 2
+     */
+
+    // All bookings made by this attendee
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    // All OTPs generated for this attendee (Module-1 + Module-2 shared)
+    public function otps()
+    {
+        return $this->hasMany(AttendeeOtp::class);
+    }
 }
