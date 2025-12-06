@@ -31,7 +31,7 @@ class RegisterController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name'     => 'required|string|max:100',
-            'email'    => 'required|email|max:150',
+            'email'    => 'required|email|max:150|unique:attendees,email',
             'mobile'   => 'required|digits:10',
             'category' => 'required|string'
         ]);
@@ -70,7 +70,7 @@ class RegisterController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name'     => 'required|string|max:100',
-            'email'    => 'required|email|max:150',
+            'email'    => 'required|email|max:150|validate:unique:attendees,email',
             'mobile'   => 'required|digits:10',
             'category' => 'required|string',
             'otp'      => 'required|digits:6'

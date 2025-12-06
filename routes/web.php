@@ -9,6 +9,30 @@ use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\Admin\ScreenSlotAssignmentController;
 use App\Http\Controllers\Admin\VenueController;
 use App\Http\Controllers\Api\OtpController;
+use App\Http\Controllers\Public\PublicBookingOtpController;
+use App\Http\Controllers\Public\ShowtimeController;
+
+Route::get('/public/booking/auth', function () {
+    return view('public.booking-auth');
+});
+
+
+
+
+Route::prefix('public/booking')->group(function () {
+
+    Route::post('/request-otp', [PublicBookingOtpController::class, 'requestOtp'])
+        ->name('public.booking.requestOtp');
+
+    Route::post('/verify-otp', [PublicBookingOtpController::class, 'verifyOtp'])
+        ->name('public.booking.verifyOtp');
+
+    Route::get('/showtimes', [ShowtimeController::class, 'index'])
+        ->name('public.booking.showtimes');
+
+});
+
+
 
 
 /*
