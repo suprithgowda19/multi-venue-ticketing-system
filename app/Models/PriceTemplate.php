@@ -14,11 +14,18 @@ class PriceTemplate extends Model
 
     protected $casts = [
         'metadata' => 'array',
+        'base_price' => 'float',
     ];
 
-    // A template has many row prices
     public function rows()
     {
         return $this->hasMany(PriceTemplateRow::class);
+    }
+
+    public function getPricingMapAttribute()
+    {
+        return $this->rows->mapWithKeys(fn($row) => [
+            $row->row_label => $row->price,
+        ]);
     }
 }

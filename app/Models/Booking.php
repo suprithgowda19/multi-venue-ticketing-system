@@ -18,22 +18,20 @@ class Booking extends Model
     ];
 
     protected $casts = [
-        'metadata' => 'array',
+        'metadata'     => 'array',
+        'total_amount' => 'float',
     ];
 
-    // The user who made the booking
     public function attendee()
     {
         return $this->belongsTo(Attendee::class);
     }
 
-    // The movie + screen + slot + day assignment
     public function assignment()
     {
         return $this->belongsTo(ScreenSlotAssignment::class, 'assignment_id');
     }
 
-    // Seats booked under this booking
     public function seats()
     {
         return $this->hasMany(BookingSeat::class);

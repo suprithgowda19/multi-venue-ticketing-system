@@ -21,7 +21,16 @@ class Screen extends Model
     }
 
     /**
-     * A screen has many assignments (movie schedules).
+     * A screen has many seat records.
+     * Used for seat-selection module.
+     */
+    public function seats()
+    {
+        return $this->hasMany(Seat::class);
+    }
+
+    /**
+     * A screen has many movie showtime assignments.
      */
     public function assignments()
     {
@@ -29,7 +38,7 @@ class Screen extends Model
     }
 
     /**
-     * A screen has many attendees.
+     * A screen has many attendees (optional but supported).
      */
     public function attendees()
     {
@@ -37,10 +46,11 @@ class Screen extends Model
     }
 
     /**
-     * Optional: If you want to quickly access slots through assignments
+     * Optional:
+     * Access slots through screen_slot_assignments.
      */
     public function slots()
     {
-        return $this->belongsToMany(Slot::class, 'screen_slot_assignments');
+        return $this->belongsToMany(Slot::class, 'screen_slot_assignments', 'screen_id', 'slot_id');
     }
 }

@@ -19,13 +19,11 @@ class Seat extends Model
         'metadata' => 'array',
     ];
 
-    // A seat belongs to a screen
     public function screen()
     {
         return $this->belongsTo(Screen::class);
     }
 
-    // Seats can be referenced by many booking_seats
     public function bookingSeats()
     {
         return $this->hasMany(BookingSeat::class);

@@ -12,7 +12,10 @@ class PriceTemplateRow extends Model
         'price',
     ];
 
-    // A row belongs to a price template
+    protected $casts = [
+        'price' => 'float',
+    ];
+
     public function template()
     {
         return $this->belongsTo(PriceTemplate::class, 'price_template_id');
